@@ -8,16 +8,29 @@ function init(){
 
 if (num === 0){
   getColor().then((color) => {
-body.style.backgroundColor = color;
-});
+    body.style.backgroundColor = color;
+    });
   }else {
  getMessage().then((msg) => {
-const p = document.createElement('p');
-p.textContent = msg;
+    const p = document.createElement('p');
+    p.textContent = msg;
 main.appendChild(p);
  });
 }
 });
 }
 
+function getColor() {
+  return new Promise((resolve) => {
+    let delay = Math.random() * 1000 + 1000;
+    setTimeout(() => {
+      const hexNum = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += hexNum[Math.floor(Math.random() * 16)];
+      }
+      resolve(color);
+    }, delay);
+  });
+}
 
